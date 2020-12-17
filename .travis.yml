@@ -5,19 +5,12 @@ node_js:
 services:
   - docker
 
-before_script:
-  - echo $POSTGRES_HOST
-
 script:
+  - npm run build
   - docker --version # print the version for logging
-  - echo "version"
   - docker build -t udagram-api-feed --build-arg POSTGRES_USERNAME=$POSTGRES_USERNAME --build-arg POSTGRES_PASSWORD=$POSTGRES_PASSWORD --build-arg POSTGRES_HOST=$POSTGRES_HOST --build-arg POSTGRES_DB=$POSTGRES_DB --build-arg AWS_BUCKET=$AWS_BUCKET --build-arg AWS_REGION=$AWS_REGION --build-arg AWS_PROFILE=$AWS_PROFILE --build-arg JWT_SECRET=$JWT_SECRET --build-arg URL=$URL --build-arg FEED_PORT=$FEED_PORT .
-  - docker exec container env
-  - echo "build"
   - docker tag udagram-api-feed kbessetteudacity/udagram-api-feed:latest
-  - echo "tagg"
 
 after_success:
-  - echo "Pushing"
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
   - docker push kbessetteudacity/udagram-api-feed
-  - echo "Pushed"
