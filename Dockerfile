@@ -11,6 +11,8 @@ COPY package*.json ./
 # Install dependencies
 RUN npm install
 
+RUN echo $POSTGRES_HOST
+
 # Copy app source
 COPY . .
 
