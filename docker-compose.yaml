@@ -1,0 +1,2 @@
+volumes:
+      - $HOME/.aws:/root/.aws

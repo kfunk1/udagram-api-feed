@@ -1,21 +1,27 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: udagram-api-feed
+  name: backend-feed
   labels:
-    app: udagram-api-feed
+    service: backend-feed
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
-      app: udagram-api-feed
+      service: backend-feed
   template:
     metadata:
       labels:
-        app: udagram-api-feed
+        service: backend-feed
     spec:
       containers:
-      - name: udagram-api-feed
-        image: kbessetteudacity/udagram-api-feed
-        ports:
-        - containerPort: 8100
+        - name: backend-feed
+          image: kbessetteudacity/udagram-api-feed
+          imagePullPolicy: Always
+          resources:
+            requests:
+              memory: "64Mi"
+              cpu: "250m"
+            limits:
+              memory: "1024Mi"
+              cpu: "500m"
