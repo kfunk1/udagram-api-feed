@@ -1,9 +1,9 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: udagram-api-feed
+  name: backend-feed
   labels:
-    service: udagram-api-feed
+    service: backend-feed
 spec:
   ports:
   - port: 8080
@@ -11,4 +11,4 @@ spec:
     protocol: TCP
     name: http
   selector:
-    service: udagram-api-feed
+    service: backend-feed
