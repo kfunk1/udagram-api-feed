@@ -33,6 +33,8 @@ ENV JWT_SECRET=${JWT_SECRET}
 ENV URL=${URL}
 ENV FEED_PORT=${FEED_PORT}
 
+RUN npm ci
+
 # Copy app source
 COPY . .
 
