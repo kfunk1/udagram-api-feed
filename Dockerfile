@@ -11,11 +11,13 @@ COPY package*.json ./
 # Install dependencies
 RUN npm install
 
+RUN npm ci
+
 # Copy app source
 COPY . .
 
 # Bind the port that the image will run on
-EXPOSE 8100
+EXPOSE 8080
 
 # Define the Docker image's behavior at runtime
-RUN npm run prod
+CMD ["npm", "run", "prod"]
